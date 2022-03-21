@@ -1,0 +1,24 @@
+{
+  "name": "find-workers-service",
+  "version": "1.0.0",
+  "description": "Worker finder service for API training course",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "connect": "^3.2.0",
+    "js-yaml": "^3.3.0",
+    "oas3-tools": "^2.2.3"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
