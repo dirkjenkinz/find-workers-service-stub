@@ -1,5 +1,6 @@
 'use strict';
 var utils = require('../utils/writer.js');
+const Worker = require('../models/worker.js');
 
 /**
  * Returns all workers locations from the given location or within 50km
@@ -7,31 +8,23 @@ var utils = require('../utils/writer.js');
  * location String home location to search against
  * returns List
  **/
-exports.workersLocationGET = function async (location) {
-  return new Promise(function (resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [{
-      "workerId": 0,
-      "name": "name",
-      "location": {
-        "latitude": 6.0274563,
-        "longitude": 1.4658129
-      },
-      "home": "home"
-    }, {
-      "workerId": 0,
-      "name": "name",
-      "location": {
-        "latitude": 6.0274563,
-        "longitude": 1.4658129
-      },
-      "home": "home"
-    }];
-    if (location.latitude === 6 && location.longitude === 1) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      console.log(new utils.respondWithCode(400,))
-      resolve(new utils.respondWithCode(400,));
+exports.workersLocationGET = async (location) => {
+  console.log('workersLocationGET')
+  let loc = {};
+  location = location.split(',');
+  let l = location[0].indexOf(':') + 1;
+  loc.latitude = location[0].substring(l).trim();
+  l = location[1].indexOf(':') + 1;
+  loc.longitude = location[1].substring(l, location[1].length - 1).trim();
+  console.log('loc=', loc)
+  return new Promise(async (resolve, reject) => {
+    try {
+      const workers = await Worker.find({ location: loc });
+      console.log('workers=', workers)
+      resolve(workers);
+    } catch (err) {
+      console.log(err)
+      reject(new utils.respondWithCode(500,));
     }
   });
 }
