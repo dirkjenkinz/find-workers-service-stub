@@ -8,7 +8,7 @@ const url = 'mongodb://localhost/WorkerDBex';
 mongoose.connect(url);
 
 var oas3Tools = require('oas3-tools');
-var serverPort = 8082;
+var serverPort = 8080;
 
 // swaggerRouter configuration
 var options = {

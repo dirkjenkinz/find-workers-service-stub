@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "jest": "^27.5.1",
+    "mockingoose": "^2.15.2",
     "mongoose": "^6.2.8"
   }
 }

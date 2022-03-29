@@ -1,33 +1,32 @@
 const { expect, test } = require('@jest/globals');
 const { workersLocationGET } = require('../service/DefaultService');
+const mockingoose = require('mockingoose');
+const Worker = require('../models/worker');
 
-const homeList = [{
-    "workerId": 0,
-    "name": "name",
-    "location": {
-        "latitude": 6.0274563,
-        "longitude": 1.4658129
-    },
-    "home": "home"
-}, {
-    "workerId": 0,
-    "name": "name",
-    "location": {
-        "latitude": 6.0274563,
-        "longitude": 1.4658129
-    },
-    "home": "home"
-}];
-
-describe('Find workers by location', () => {
-    it('should return a partial list of workers', async () => {
-        const location = {latitude: 6, longitude: 1}
-        const response = await workersLocationGET(location);
-        expect(response).toEqual(homeList);
+describe('get workers by location', () => {
+    it('should return a list of workers living at a specified geolocatioon', async () => {
+      mockingoose(Worker).toReturn(
+        [
+          {
+            "workerId": 12345678,
+            "name": 'Bridget Bardot',
+            "location": {
+              "latitude": '12',
+              "longitude": '8',
+            },
+            "home": 'Zurich'
+          },
+          {
+            "workerId": 23456789,
+            "name": 'Hugh Jarse',
+            "location": {
+              "latitude": '12',
+              "longitude": '8',
+            },
+            "home": 'Zurich'
+          }
+        ], 'find');
+      const response = await workersLocationGET('12, 8');
+      expect(response[0].name).toBe('Bridget Bardot');
     });
-    it('should return 400', async () => {
-        const location = {latitude: 6, longitude: 2}
-        const response = await workersLocationGET(location);
-        expect(response.code).toEqual(400);
-    });
-});
+  });

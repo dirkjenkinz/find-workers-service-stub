@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const GeoLocation = require('./geoLocation');
+const GeoLocation = require('./geoLocation').schema;
 
 const workerSchema = new mongoose.Schema({
     workerId: {

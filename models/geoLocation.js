@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const GeoLocation = new mongoose.Schema({
+const geoLocationSchema = new mongoose.Schema({
     latitude: {
         type: Number,
         required: true
@@ -9,6 +9,6 @@ const GeoLocation = new mongoose.Schema({
         type: Number,
         required: true
     }
-})
+});
 
-module.exports = { GeoLocation };
+module.exports = mongoose.model('GeoLocation', geoLocationSchema);

@@ -8,20 +8,19 @@ const Worker = require('../models/worker.js');
  * location String home location to search against
  * returns List
  **/
-exports.workersLocationGET = async (location) => {
-  console.log('workersLocationGET')
-  let loc = {};
+ exports.workersLocationGET = function (location) {
+  console.log('workersLocationGET ---')
   location = location.split(',');
-  let l = location[0].indexOf(':') + 1;
-  loc.latitude = location[0].substring(l).trim();
-  l = location[1].indexOf(':') + 1;
-  loc.longitude = location[1].substring(l, location[1].length - 1).trim();
-  console.log('loc=', loc)
+  console.log('1.', '>'+location+'<')
+  let lat = Number(location[0]);
+  let long = Number(location[1]);
+  const loc = {"latitude": lat, "longitude": long};
+  console.log(loc)
   return new Promise(async (resolve, reject) => {
     try {
-      const workers = await Worker.find({ location: loc });
-      console.log('workers=', workers)
-      resolve(workers);
+      const workers = await Worker.find({location: loc});
+      console.log(workers)
+      resolve(workers)
     } catch (err) {
       console.log(err)
       reject(new utils.respondWithCode(500,));
