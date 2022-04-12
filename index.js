@@ -1,5 +1,3 @@
-'use strict';
-
 const path = require('path');
 const http = require('http');
 
@@ -13,9 +11,9 @@ const serverPort = 8080;
 
 // swaggerRouter configuration
 var options = {
-    routing: {
-        controllers: path.join(__dirname, './controllers')
-    },
+  routing: {
+    controllers: path.join(__dirname, './controllers')
+  },
 };
 
 const expressAppConfig = oas3Tools.expressAppConfig(path.join(__dirname, 'api/openapi.yaml'), options);
@@ -23,6 +21,6 @@ const app = expressAppConfig.getApp();
 
 // Initialize the Swagger middleware
 http.createServer(app).listen(serverPort, function () {
-    logger.info('Home Location Store server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
-    logger.info('Swagger-ui is available on http://localhost:%d/docs', serverPort);
+  logger.info('Home Location Store server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
+  logger.info('Swagger-ui is available on http://localhost:%d/docs', serverPort);
 });

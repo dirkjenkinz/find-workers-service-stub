@@ -3,7 +3,7 @@ var ResponsePayload = function(code, payload) {
   this.payload = payload;
 }
 
-exports.respondWithCode = function(code, payload) {
+exports.RespondWithCode = function(code, payload) {
   return new ResponsePayload(code, payload);
 }
 

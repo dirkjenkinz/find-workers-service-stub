@@ -1,10 +1,7 @@
-'use strict';
+const utils = require('../utils/writer');
+const Default = require('../service/DefaultService');
 
-var utils = require('../utils/writer.js');
-var Default = require('../service/DefaultService');
-
-module.exports.workersLocationGET = function workersLocationGET (req, res, next, location) {
-  console.log('101.', location);
+module.exports.workersLocationGET = function workersLocationGET(req, res, next, location) {
   Default.workersLocationGET(location)
     .then(function (response) {
       utils.writeJson(res, response);

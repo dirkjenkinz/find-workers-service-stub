@@ -6,7 +6,8 @@
   "scripts": {
     "prestart": "npm install",
     "start": "nodemon index.js",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint ."
   },
   "keywords": [
     "swagger"
@@ -14,15 +15,18 @@
   "license": "Unlicense",
   "private": true,
   "dependencies": {
+    "@dwp/eslint-config-base": "^6.0.0",
     "connect": "^3.2.0",
     "js-yaml": "^3.3.0",
     "nodemon": "^2.0.15",
-    "oas3-tools": "^2.2.3"
+    "oas3-tools": "^2.2.3",
+    "winston": "^3.6.0",
+    "mockingoose": "^2.15.2",
+    "mongoose": "^6.2.8"
   },
   "devDependencies": {
-    "jest": "^27.5.1",
-    "mockingoose": "^2.15.2",
-    "mongoose": "^6.2.8",
-    "winston": "^3.6.0"
+    "eslint": "^8.13.0",
+    "eslint-config-google": "^0.14.0",
+    "jest": "^27.5.1"
   }
 }
